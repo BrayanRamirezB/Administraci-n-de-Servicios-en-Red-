@@ -35,5 +35,3 @@ def consultaSNMPextended(comunidad, host, oid, port):
             varB=(' = '.join([x.prettyPrint() for x in varBind]))
             resultado= varB
     return resultado
-
-# print(consultaSNMPextended('comunidadWASR', '192.168.0.26', '1.3.6.1.2.1.1.1.0', 161))
