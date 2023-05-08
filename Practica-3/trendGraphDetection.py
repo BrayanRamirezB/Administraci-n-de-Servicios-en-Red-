@@ -82,7 +82,7 @@ def performance(community, ip, port):
             print('CPU: ' + str(dato))
 
         # ------------------Para la RAM---------------------------------------------------------
-        ready = 60
+        ready = 50
         sett = 70
         go = 80
 
@@ -119,7 +119,7 @@ def performance(community, ip, port):
 
 
                 # ------------------Para el DISK---------------------------------------------------------
-        ready = 70
+        ready = 60
         sett = 80
         go = 90
 
