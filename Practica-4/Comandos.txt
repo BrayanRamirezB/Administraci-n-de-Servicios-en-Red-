@@ -1,0 +1,103 @@
+Para configurar ambos routers desde Cloud
+Comandos Cloud (Ubuntu terminal)
+sudo tunctl -u brayan
+sudo ifconfig tap0 30.30.30.2/24
+sudo route add -net 30.30.30.0 netmask 255.255.255.0 gw 30.30.30.1 dev tap0
+sudo route add -net 192.168.1.0 netmask 255.255.255.0 gw 30.30.30.1 dev tap0
+
+Para que pueda hacer ping a 10.10.10.2 or 20.20.20.2 or 40.40.40.2 desde cloud
+sudo route add -net 10.10.10.0 netmask 255.255.255.0 gw 30.30.30.1 dev tap0
+sudo route add -net 20.20.20.0 netmask 255.255.255.0 gw 30.30.30.1 dev tap0
+sudo route add -net 40.40.40.0 netmask 255.255.255.0 gw 30.30.30.1 dev tap0
+
+
+Dudas
+
+Configuración básica (SOLO CONEXION ENTRE ROUTERS Y CLOUD)
+- Conectar Cloud to RCP100-1, luego RCP100-1 to RCP100-2
+    Comandos RCP100-1
+      enable
+      configure
+      
+      interface ethernet eth0
+      ip address 192.168.1.2/24
+      no shutdown
+      exit
+      
+      interface ethernet eth1
+      ip address 30.30.30.1/24
+      no shutdown
+      exit
+      
+      router rip
+      network 30.30.30.0/24
+      network 192.168.1.0/24
+      exit
+    
+    Comandos RCP100-2
+      enable
+      configure
+      
+      interface ethernet eth2
+      ip address 192.168.1.1/24
+      no shutdown
+      exit
+      
+      router rip
+      network 192.168.1.0/24
+      exit
+
+
+Configuración Completa (CONEXION ENTRE ROUTERS, PC'S y CLOUD) -- Se debe agregar a la configuración básica
+- Conectar RCP100-1 to PC1, luego RCP100-2 to PC2 and PC3
+    Comandos RCP100-1
+      enable
+      configure
+      
+      interface ethernet eth2
+      ip address 40.40.40.1/24
+      no shutdown
+      exit
+      
+      router rip
+      network 40.40.40.0/24
+      exit
+    
+    Comandos RCP100-2
+      enable
+      configure
+      
+      interface ethernet eth0
+      ip address 10.10.10.1/24
+      no shutdown
+      exit
+      
+      interface ethernet eth1
+      ip address 20.20.20.1/24
+      no shutdown
+      exit
+      
+      router rip
+      network 20.20.20.0/24
+      network 10.10.10.0/24
+      exit
+
+Configuración PC1 and PC2 and PC3
+- Conectar PC1 to RCP100-1
+    Comandos PC3
+      ip 40.40.40.2/24 40.40.40.1
+
+- Conectar PC2 and PC3 to RCP100-2
+    Comandos PC2
+      ip 10.10.10.2/24 10.10.10.1
+    
+    Comandos PC3
+      ip 20.20.20.2/24 20.20.20.1
+  
+  
+        
+      
+      
+    	
+    
+
