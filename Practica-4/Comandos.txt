@@ -11,8 +11,6 @@ sudo route add -net 20.20.20.0 netmask 255.255.255.0 gw 30.30.30.1 dev tap0
 sudo route add -net 40.40.40.0 netmask 255.255.255.0 gw 30.30.30.1 dev tap0
 
 
-Dudas
-
 Configuración básica (SOLO CONEXION ENTRE ROUTERS Y CLOUD)
 - Conectar Cloud to RCP100-1, luego RCP100-1 to RCP100-2
     Comandos RCP100-1
